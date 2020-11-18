@@ -7,6 +7,7 @@ class Chart extends React.Component {
   };
   componentDidMount() {
     this.getData();
+    this.updateInfo();
   }
 
   render() {
@@ -50,6 +51,11 @@ class Chart extends React.Component {
       });
     console.log(this.state);
   };
+
+  updateInfo = () => {
+    var dataFunction = this.getData;
+    setInterval(function(){dataFunction()}, 300000)
+  }
 }
 
 export default Chart;
