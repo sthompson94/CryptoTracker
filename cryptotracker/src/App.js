@@ -5,7 +5,7 @@ import Chart from './Components/Chart'
 function App() {
   return (
     <div className="App">
-      <Chart message="Hello World"/>
+      <Chart />
     </div>
   );
 }
