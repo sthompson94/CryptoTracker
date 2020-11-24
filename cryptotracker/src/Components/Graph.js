@@ -1,10 +1,13 @@
 import React from "react";
+import {Line} from 'react-chartjs-2';
 
-class Chart extends React.Component {
+
+
+class Graph extends React.Component {
   state = {
     crypto: "",
     price: "",
-    dataSet:[]
+    dataSet:[],
     };
 
     //after component mounts get the data, and update it periodically
@@ -13,14 +16,32 @@ class Chart extends React.Component {
     this.updateInfo();
   }
 
+  //What is actully seen on the screen
   render() {
     return (
       <div>
         <h1>{this.state.crypto}:</h1>
-        <h2>{this.state.price}</h2>
+        <Line
+          data={this.state.dataSet}
+          options={{
+            title:{
+              display:true,
+              text:'BTC Price over time',
+              fontSize:20,
+              width: 600,
+              height: 400,
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+        <h2>Current Price: {this.state.price}</h2>
       </div>
     );
   }
+ 
 
   //Request to Coinmarketcap API to get Cryptocurrency information
   getData = () => {
@@ -67,14 +88,18 @@ class Chart extends React.Component {
     setInterval(function(){dataFunction()}, 10000)
   }
 
+  //this function will be called along with an API call to periodically get and store price data
   pushPriceToArray = () => {
+    //new variable equal to the current data set, making it easy to add to
     var data = this.state.dataSet;
 
+    //necessary for the first 24 data entries
     if(data.length < 24){
       data.push(this.state.price)
       this.setState({dataSet: data})
     }
     else{
+      //use this for everything after 24 entries, removes the oldest entry, and adds the newest
       data.shift();
       data.push(this.state.price);
       this.setState({
@@ -86,4 +111,4 @@ class Chart extends React.Component {
 
 
 
-export default Chart;
+export default Graph;
