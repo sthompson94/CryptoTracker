@@ -4,7 +4,10 @@ class Chart extends React.Component {
   state = {
     crypto: "",
     price: "",
-  };
+    dataSet:[]
+    };
+
+    //after component mounts get the data, and update it periodically
   componentDidMount() {
     this.getData();
     this.updateInfo();
@@ -19,6 +22,7 @@ class Chart extends React.Component {
     );
   }
 
+  //Request to Coinmarketcap API to get Cryptocurrency information
   getData = () => {
     const rp = require("request-promise");
     const requestOptions = {
@@ -31,6 +35,7 @@ class Chart extends React.Component {
         convert: "USD",
       },
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "X-CMC_PRO_API_KEY": "2ac9ef9a-06f2-4a4e-9f5e-ef19c0c9d1d6",
       },
       json: true,
@@ -40,11 +45,13 @@ class Chart extends React.Component {
     rp(requestOptions)
       .then((response) => {
         console.log("API call response:", response);
+        
 
         this.setState({
           crypto: response.data[0].name,
           price: response.data[0].quote.USD.price,
         });
+        this.pushPriceToArray();
       })
       .catch((err) => {
         console.log("API call error:", err.message);
@@ -52,10 +59,31 @@ class Chart extends React.Component {
     console.log(this.state);
   };
 
+  //
+
   updateInfo = () => {
     var dataFunction = this.getData;
-    setInterval(function(){dataFunction()}, 300000)
+    
+    setInterval(function(){dataFunction()}, 10000)
+  }
+
+  pushPriceToArray = () => {
+    var data = this.state.dataSet;
+
+    if(data.length < 24){
+      data.push(this.state.price)
+      this.setState({dataSet: data})
+    }
+    else{
+      data.shift();
+      data.push(this.state.price);
+      this.setState({
+        dataSet: data
+      })
+    }
   }
 }
+
+
 
 export default Chart;
