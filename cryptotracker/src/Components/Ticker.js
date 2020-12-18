@@ -9,10 +9,17 @@ class Ticker extends React.Component {
   
   this.state = {
     BTCprice: "",
+    BTC7dayChange: "",
+    BTCmarketCap: "",
     ETHprice: "",
+    ETH7dayChange: "",
+    ETHmarketCap: "",
     XRPprice: "",
+    XRP7dayChange: "",
+    XRPmarketCap: "",
     BCHprice: "",
-    dataSet:[],
+    BCH7dayChange: "",
+    BCHmarketCap: ""
     };
   }
     //after component mounts get the data, and update it periodically
@@ -24,26 +31,35 @@ class Ticker extends React.Component {
   //What is actully seen on the screen
   render() {
     return (
-      <div>
+      <div className="container">
         <div className="row">
           <div className="col-sm-4"></div>
         <CryptoCard
         name = "Bitcoin"
         price = {this.state.BTCprice}
+        sevenDayChange = {this.state.BTC7dayChange}
+        marketCap = {this.state.BTCmarketCap}
+        nameColor = "text-success"
         />
         </div>
         <div className="row">
         <CryptoCard
         name = "Ethereum"
         price = {this.state.ETHprice}
+        sevenDayChange = {this.state.ETH7dayChange}
+        marketCap = {this.state.ETHmarketCap}
         />
         <CryptoCard
         name = "Ripple"
         price = {this.state.XRPprice}
+        sevenDayChange = {this.state.XRP7dayChange}
+        marketCap = {this.state.XRPmarketCap}
         />
         <CryptoCard
         name = "Bitcoin Cash"
         price = {this.state.BCHprice}
+        sevenDayChange = {this.state.BCH7dayChange}
+        marketCap = {this.state.BCHmarketCap}
         />
         </div>
       </div>
@@ -78,9 +94,17 @@ class Ticker extends React.Component {
 
         this.setState({
           BTCprice: response.data[0].quote.USD.price.toFixed(2),
-           ETHprice: response.data[1].quote.USD.price.toFixed(2),
-           XRPprice: response.data[2].quote.USD.price.toFixed(3),
-           BCHprice: response.data[5].quote.USD.price.toFixed(2)
+          BTC7dayChange: response.data[0].quote.USD.percent_change_7d.toFixed(2),
+          BTCmarketCap: response.data[0].quote.USD.market_cap.toFixed(0),
+          ETHprice: response.data[1].quote.USD.price.toFixed(2),
+          ETH7dayChange: response.data[1].quote.USD.percent_change_7d.toFixed(2),
+          ETHmarketCap: response.data[1].quote.USD.market_cap.toFixed(0),
+          XRPprice: response.data[2].quote.USD.price.toFixed(3),
+          XRP7dayChange: response.data[2].quote.USD.percent_change_7d.toFixed(2),
+          XRPmarketCap: response.data[2].quote.USD.market_cap.toFixed(0),
+          BCHprice: response.data[5].quote.USD.price.toFixed(2),
+          BCH7dayChange: response.data[5].quote.USD.percent_change_7d.toFixed(2),
+          BCHmarketCap: response.data[5].quote.USD.market_cap.toFixed(0),
         });
       })
       .catch((err) => {
