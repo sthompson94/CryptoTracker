@@ -8,18 +8,22 @@ class Ticker extends React.Component {
     super(props)
   
   this.state = {
-    BTCprice: "",
-    BTC7dayChange: "",
-    BTCmarketCap: "",
-    ETHprice: "",
-    ETH7dayChange: "",
-    ETHmarketCap: "",
-    XRPprice: "",
-    XRP7dayChange: "",
-    XRPmarketCap: "",
-    BCHprice: "",
-    BCH7dayChange: "",
-    BCHmarketCap: ""
+    firstName: "",
+    firstprice: "",
+    first7dayChange: "",
+    firstmarketCap: "",
+    secondName: "",
+    secondprice: "",
+    second7dayChange: "",
+    secondmarketCap: "",
+    thirdName: "",
+    thirdprice: "",
+    third7dayChange: "",
+    thirdmarketCap: "",
+    fourthName: "",
+    fourthprice: "",
+    fourth7dayChange: "",
+    fourthmarketCap: ""
     };
   }
     //after component mounts get the data, and update it periodically
@@ -35,31 +39,31 @@ class Ticker extends React.Component {
         <div className="row">
           <div className="col-sm-4"></div>
         <CryptoCard
-        name = "Bitcoin"
-        price = {this.state.BTCprice}
-        sevenDayChange = {this.state.BTC7dayChange}
-        marketCap = {this.state.BTCmarketCap}
+        name = {this.state.firstName}
+        price = {this.state.firstprice}
+        sevenDayChange = {this.state.first7dayChange}
+        marketCap = {this.state.firstmarketCap}
         nameColor = "text-success"
         />
         </div>
         <div className="row">
         <CryptoCard
-        name = "Ethereum"
-        price = {this.state.ETHprice}
-        sevenDayChange = {this.state.ETH7dayChange}
-        marketCap = {this.state.ETHmarketCap}
+        name = {this.state.secondName}
+        price = {this.state.secondprice}
+        sevenDayChange = {this.state.second7dayChange}
+        marketCap = {this.state.secondmarketCap}
         />
         <CryptoCard
-        name = "Ripple"
-        price = {this.state.XRPprice}
-        sevenDayChange = {this.state.XRP7dayChange}
-        marketCap = {this.state.XRPmarketCap}
+        name = {this.state.thirdName}
+        price = {this.state.thirdprice}
+        sevenDayChange = {this.state.third7dayChange}
+        marketCap = {this.state.thirdmarketCap}
         />
         <CryptoCard
-        name = "Bitcoin Cash"
-        price = {this.state.BCHprice}
-        sevenDayChange = {this.state.BCH7dayChange}
-        marketCap = {this.state.BCHmarketCap}
+        name = {this.state.fourthName}
+        price = {this.state.fourthprice}
+        sevenDayChange = {this.state.fourth7dayChange}
+        marketCap = {this.state.fourthmarketCap}
         />
         </div>
       </div>
@@ -81,7 +85,7 @@ class Ticker extends React.Component {
       },
       headers: {
         "Access-Control-Allow-Origin": "*",
-        "X-CMC_PRO_API_KEY": "2ac9ef9a-06f2-4a4e-9f5e-ef19c0c9d1d6",
+        "X-CMC_PRO_API_KEY": process.env.REACT_APP_API_KEY,
       },
       json: true,
       gzip: true,
@@ -93,18 +97,22 @@ class Ticker extends React.Component {
         
 
         this.setState({
-          BTCprice: response.data[0].quote.USD.price.toFixed(2),
-          BTC7dayChange: response.data[0].quote.USD.percent_change_7d.toFixed(2),
-          BTCmarketCap: response.data[0].quote.USD.market_cap.toFixed(0),
-          ETHprice: response.data[1].quote.USD.price.toFixed(2),
-          ETH7dayChange: response.data[1].quote.USD.percent_change_7d.toFixed(2),
-          ETHmarketCap: response.data[1].quote.USD.market_cap.toFixed(0),
-          XRPprice: response.data[2].quote.USD.price.toFixed(3),
-          XRP7dayChange: response.data[2].quote.USD.percent_change_7d.toFixed(2),
-          XRPmarketCap: response.data[2].quote.USD.market_cap.toFixed(0),
-          BCHprice: response.data[5].quote.USD.price.toFixed(2),
-          BCH7dayChange: response.data[5].quote.USD.percent_change_7d.toFixed(2),
-          BCHmarketCap: response.data[5].quote.USD.market_cap.toFixed(0),
+          firstName: response.data[0].name,
+          firstprice: response.data[0].quote.USD.price.toFixed(2),
+          first7dayChange: response.data[0].quote.USD.percent_change_7d.toFixed(2),
+          firstmarketCap: response.data[0].quote.USD.market_cap.toFixed(0),
+          secondName: response.data[1].name,
+          secondprice: response.data[1].quote.USD.price.toFixed(2),
+          second7dayChange: response.data[1].quote.USD.percent_change_7d.toFixed(2),
+          secondmarketCap: response.data[1].quote.USD.market_cap.toFixed(0),
+          thirdName: response.data[2].name,
+          thirdprice: response.data[2].quote.USD.price.toFixed(3),
+          third7dayChange: response.data[2].quote.USD.percent_change_7d.toFixed(2),
+          thirdmarketCap: response.data[2].quote.USD.market_cap.toFixed(0),
+          fourthName: response.data[3].name,
+          fourthprice: response.data[3].quote.USD.price.toFixed(2),
+          fourth7dayChange: response.data[3].quote.USD.percent_change_7d.toFixed(2),
+          fourthmarketCap: response.data[3].quote.USD.market_cap.toFixed(0),
         });
       })
       .catch((err) => {
@@ -118,7 +126,7 @@ class Ticker extends React.Component {
   updateInfo = () => {
     var dataFunction = this.getData;
     
-    setInterval(function(){dataFunction()}, 30000)
+    setInterval(function(){dataFunction()}, 20000)
   }
 
   //this function will be called along with an API call to periodically get and store price data
