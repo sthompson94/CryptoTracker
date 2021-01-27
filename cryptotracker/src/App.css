@@ -24,6 +24,17 @@
   color: white;
 }
 
+.border{
+  border-color: black;
+  border-width: 10px;
+}
+
+.cryptocard{
+  margin-top: 10px;
+}
+
+
+
 .App-link {
   color: #61dafb;
 }

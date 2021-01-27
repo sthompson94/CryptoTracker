@@ -11,25 +11,25 @@ class Ticker extends React.Component {
     firstName: "",
     firstprice: "",
     first7dayChange: "",
-    firstmarketCap: "",
+    first1dayChange: "",
     secondName: "",
     secondprice: "",
     second7dayChange: "",
-    secondmarketCap: "",
+    second1dayChange: "",
     thirdName: "",
     thirdprice: "",
     third7dayChange: "",
-    thirdmarketCap: "",
+    third1dayChange: "",
     fourthName: "",
     fourthprice: "",
     fourth7dayChange: "",
-    fourthmarketCap: ""
+    fourth1dayChange: ""
     };
   }
     //after component mounts get the data, and update it periodically
   componentDidMount() {
     this.getData();
-    this.updateInfo();
+    // this.updateInfo();
   }
 
   //What is actully seen on the screen
@@ -37,13 +37,15 @@ class Ticker extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-sm-4"></div>
+          
+          
         <CryptoCard
         name = {this.state.firstName}
         price = {this.state.firstprice}
         sevenDayChange = {this.state.first7dayChange}
-        marketCap = {this.state.firstmarketCap}
+        oneDayChange = {this.state.first1dayChange}
         nameColor = "text-success"
+        classes = "border border-dark rounded col-sm-12 cryptocard mx-auto"
         />
         </div>
         <div className="row">
@@ -51,19 +53,22 @@ class Ticker extends React.Component {
         name = {this.state.secondName}
         price = {this.state.secondprice}
         sevenDayChange = {this.state.second7dayChange}
-        marketCap = {this.state.secondmarketCap}
+        oneDayChange = {this.state.second1dayChange}
+        classes = "border border-dark rounded col-sm-4 cryptocard"
         />
         <CryptoCard
         name = {this.state.thirdName}
         price = {this.state.thirdprice}
         sevenDayChange = {this.state.third7dayChange}
-        marketCap = {this.state.thirdmarketCap}
+        oneDayChange = {this.state.third1dayChange}
+        classes = "border border-dark rounded col-sm-4 centerCard cryptocard"
         />
         <CryptoCard
         name = {this.state.fourthName}
         price = {this.state.fourthprice}
         sevenDayChange = {this.state.fourth7dayChange}
-        marketCap = {this.state.fourthmarketCap}
+        oneDayChange = {this.state.fourth1dayChange}
+        classes = "border border-dark rounded col-sm-4 cryptocard"
         />
         </div>
       </div>
@@ -71,7 +76,7 @@ class Ticker extends React.Component {
   }
  
 
-  //Request to Coinmarketcap API to get Cryptocurrency information
+  //Request to Coin1dayChange API to get Cryptocurrency information
   getData = () => {
     const rp = require("request-promise");
     const requestOptions = {
@@ -100,19 +105,19 @@ class Ticker extends React.Component {
           firstName: response.data[0].name,
           firstprice: response.data[0].quote.USD.price.toFixed(2),
           first7dayChange: response.data[0].quote.USD.percent_change_7d.toFixed(2),
-          firstmarketCap: response.data[0].quote.USD.market_cap.toFixed(0),
+          first1dayChange: response.data[0].quote.USD.percent_change_24h.toFixed(2),
           secondName: response.data[1].name,
           secondprice: response.data[1].quote.USD.price.toFixed(2),
           second7dayChange: response.data[1].quote.USD.percent_change_7d.toFixed(2),
-          secondmarketCap: response.data[1].quote.USD.market_cap.toFixed(0),
+          second1dayChange: response.data[1].quote.USD.percent_change_24h.toFixed(2),
           thirdName: response.data[2].name,
           thirdprice: response.data[2].quote.USD.price.toFixed(3),
           third7dayChange: response.data[2].quote.USD.percent_change_7d.toFixed(2),
-          thirdmarketCap: response.data[2].quote.USD.market_cap.toFixed(0),
+          third1dayChange: response.data[2].quote.USD.percent_change_24h.toFixed(2),
           fourthName: response.data[3].name,
           fourthprice: response.data[3].quote.USD.price.toFixed(2),
           fourth7dayChange: response.data[3].quote.USD.percent_change_7d.toFixed(2),
-          fourthmarketCap: response.data[3].quote.USD.market_cap.toFixed(0),
+          fourth1dayChange: response.data[3].quote.USD.percent_change_24h.toFixed(2),
         });
       })
       .catch((err) => {
@@ -123,30 +128,10 @@ class Ticker extends React.Component {
 
   //
 
-  updateInfo = () => {
-    var dataFunction = this.getData;
+  // updateInfo = () => {
+  //   var dataFunction = this.getData;
     
-    setInterval(function(){dataFunction()}, 20000)
-  }
-
-  //this function will be called along with an API call to periodically get and store price data
-  // pushPriceToArray = () => {
-  //   //new variable equal to the current data set, making it easy to add to
-  //   var data = this.state.dataSet;
-
-  //   //necessary for the first 24 data entries
-  //   if(data.length < 24){
-  //     data.push(this.state.price)
-  //     this.setState({dataSet: data})
-  //   }
-  //   else{
-  //     //use this for everything after 24 entries, removes the oldest entry, and adds the newest
-  //     data.shift();
-  //     data.push(this.state.price);
-  //     this.setState({
-  //       dataSet: data
-  //     })
-  //   }
+  //   setInterval(function(){dataFunction()}, 20000)
   // }
 }
 
