@@ -45,7 +45,7 @@ class Ticker extends React.Component {
         sevenDayChange = {this.state.first7dayChange}
         oneDayChange = {this.state.first1dayChange}
         nameColor = "text-success"
-        classes = "border border-dark rounded col-sm-12 cryptocard mx-auto"
+        classes = "col-sm-12 cryptocard mx-auto"
         />
         </div>
         <div className="row">
@@ -54,21 +54,21 @@ class Ticker extends React.Component {
         price = {this.state.secondprice}
         sevenDayChange = {this.state.second7dayChange}
         oneDayChange = {this.state.second1dayChange}
-        classes = "border border-dark rounded col-sm-4 cryptocard"
+        classes = "col-sm-4 cryptocard"
         />
         <CryptoCard
         name = {this.state.thirdName}
         price = {this.state.thirdprice}
         sevenDayChange = {this.state.third7dayChange}
         oneDayChange = {this.state.third1dayChange}
-        classes = "border border-dark rounded col-sm-4 centerCard cryptocard"
+        classes = "col-sm-4 centerCard cryptocard"
         />
         <CryptoCard
         name = {this.state.fourthName}
         price = {this.state.fourthprice}
         sevenDayChange = {this.state.fourth7dayChange}
         oneDayChange = {this.state.fourth1dayChange}
-        classes = "border border-dark rounded col-sm-4 cryptocard"
+        classes = "col-sm-4 cryptocard"
         />
         </div>
       </div>
