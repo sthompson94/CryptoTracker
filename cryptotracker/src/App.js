@@ -1,13 +1,28 @@
-import './App.css';
-import Ticker from './Components/Ticker'
-import Banner from './Components/Banner'
+import "./App.css";
+import Ticker from "./Components/Ticker";
+import Banner from "./Components/Banner";
+import Button from "./Components/Button";
 
 function App() {
   return (
     <div className="App">
-      <Banner/>
-      <Ticker />
-    </div>
+      <Banner />
+      <div className="container">
+        <Ticker />
+
+            <Button
+              classes="btn btn-default"
+              link="https://bitcoin.org/en/how-it-works"
+              text="Learn about Bitcoin"
+            />
+          
+            <Button
+              classes="btn btn-default"
+              link="https://ethereum.org/en/learn/"
+              text="Learn about Ethereum"
+            />
+            </div>
+          </div>
   );
 }
 

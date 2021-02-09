@@ -35,7 +35,7 @@ class Ticker extends React.Component {
   //What is actully seen on the screen
   render() {
     return (
-      <div className="container">
+      <div>
         <div className="row">
           
           
@@ -126,13 +126,13 @@ class Ticker extends React.Component {
     console.log(this.state);
   };
 
-  //
+  
 
-  // updateInfo = () => {
-  //   var dataFunction = this.getData;
+  updateInfo = () => {
+    var dataFunction = this.getData;
     
-  //   setInterval(function(){dataFunction()}, 20000)
-  // }
+    setInterval(function(){dataFunction()}, 20000)
+  }
 }
 
 
