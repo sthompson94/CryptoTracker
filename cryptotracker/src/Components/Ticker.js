@@ -1,5 +1,6 @@
 import React from "react";
 import CryptoCard from './CryptoCard';
+import Timer from './Timer'
 
 
 
@@ -23,7 +24,8 @@ class Ticker extends React.Component {
     fourthName: "",
     fourthprice: "",
     fourth7dayChange: "",
-    fourth1dayChange: ""
+    fourth1dayChange: "",
+    counter:30
     };
   }
     //after component mounts get the data, and update it periodically
@@ -37,6 +39,7 @@ class Ticker extends React.Component {
     return (
       <div>
         <div className="row">
+          <Timer/>
           
           
         <CryptoCard
@@ -131,7 +134,7 @@ class Ticker extends React.Component {
   updateInfo = () => {
     var dataFunction = this.getData;
     
-    setInterval(function(){dataFunction()}, 20000)
+    setInterval(function(){dataFunction()}, 30000)
   }
 }
 
