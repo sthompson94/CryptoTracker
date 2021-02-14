@@ -3,6 +3,8 @@ import Ticker from "./Components/Ticker";
 import Banner from "./Components/Banner";
 import Button from "./Components/Button";
 
+// Testing for github
+
 function App() {
   return (
     <div className="App">
