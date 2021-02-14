@@ -3,7 +3,7 @@ import Ticker from "./Components/Ticker";
 import Banner from "./Components/Banner";
 import Button from "./Components/Button";
 
-// Testing for github
+// Testing for github again
 
 function App() {
   return (
