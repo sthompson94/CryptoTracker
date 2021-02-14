@@ -30,7 +30,7 @@ class Ticker extends React.Component {
     //after component mounts get the data, and update it periodically
   componentDidMount() {
     this.getData();
-    // this.updateInfo();
+    this.updateInfo();
   }
 
   //What is actully seen on the screen
