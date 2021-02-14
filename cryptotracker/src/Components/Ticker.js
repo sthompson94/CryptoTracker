@@ -25,7 +25,6 @@ class Ticker extends React.Component {
     fourthprice: "",
     fourth7dayChange: "",
     fourth1dayChange: "",
-    counter:30
     };
   }
     //after component mounts get the data, and update it periodically
@@ -39,7 +38,7 @@ class Ticker extends React.Component {
     return (
       <div>
         <div className="row">
-          <Timer/>
+          {/* <Timer/> */}
           
           
         <CryptoCard
@@ -101,9 +100,9 @@ class Ticker extends React.Component {
 
     rp(requestOptions)
       .then((response) => {
-        console.log("API call response:", response);
+        // console.log("API call response:", response);
         
-
+          //grab the data from the API call response and assign propper variables to propper data
         this.setState({
           firstName: response.data[0].name,
           firstprice: response.data[0].quote.USD.price.toFixed(2),
@@ -123,14 +122,15 @@ class Ticker extends React.Component {
           fourth1dayChange: response.data[3].quote.USD.percent_change_24h.toFixed(2),
         });
       })
+      //if theres an error, display the error in the console
       .catch((err) => {
         console.log("API call error:", err.message);
       });
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   
-
+//function for updating the displayed data
   updateInfo = () => {
     var dataFunction = this.getData;
     
