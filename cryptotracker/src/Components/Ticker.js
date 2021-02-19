@@ -80,19 +80,17 @@ class Ticker extends React.Component {
 
   //Request to Coin1dayChange API to get Cryptocurrency information
   getData = () => {
+    console.log(process.env.REACT_APP_API_KEY)
     const rp = require("request-promise");
     const requestOptions = {
       method: "GET",
       uri:
-        "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
+        "http://localhost:3001/api/cryptos",
+        // https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest
       qs: {
         start: "1",
         limit: "50",
         convert: "USD",
-      },
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "X-CMC_PRO_API_KEY": process.env.REACT_APP_API_KEY,
       },
       json: true,
       gzip: true,

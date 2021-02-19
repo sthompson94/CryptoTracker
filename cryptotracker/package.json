@@ -1,13 +1,17 @@
 {
   "name": "cryptotracker",
   "homepage": "https://sthompson94.github.io/CryptoTracker",
+  "proxy": "http://localhost:3001",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
+    "axios": "^0.21.1",
     "chart.js": "^2.9.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "gh-pages": "^3.1.0",
     "react": "^17.0.1",
     "react-chartjs-2": "^2.11.1",
