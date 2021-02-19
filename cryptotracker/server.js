@@ -19,26 +19,28 @@ if (process.env.NODE_ENV === "production") {
 
 app.get('/api/cryptos', function(req, res){
 //Api call to Coinmarket Cap
-axios({
-  method: "GET",
-  url: "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest/",
+const rp = require('request-promise');
+const requestOptions = {
+  method: 'GET',
+  uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
   qs: {
-    start: "1",
-    limit: "50",
-    convert: "USD",
+    'start': '1',
+    'limit': '4',
+    'convert': 'USD'
   },
   headers: {
-    "X-CMC_PRO_API_KEY": process.env.REACT_APP_API_KEY,
+    'X-CMC_PRO_API_KEY': process.env.REACT_APP_API_KEY
   },
-  
-})
-.then(function(res){
-  console.log(res.data.json())
-})
-.catch(function(err){
-  console.log(err);
-})
-  console.log("Hit backend")
+  json: true,
+  gzip: true
+};
+
+rp(requestOptions).then(response => {
+  console.log('API call response:', response);
+  console.log("hit backend");
+}).catch((err) => {
+  console.log('API call error:', err.message);
+});
 })
 
 
