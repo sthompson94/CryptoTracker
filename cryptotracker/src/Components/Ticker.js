@@ -1,6 +1,5 @@
 import React from "react";
 import CryptoCard from './CryptoCard';
-import Timer from './Timer'
 
 
 
