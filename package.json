@@ -1,6 +1,6 @@
 {
   "name": "cryptotracker",
-  "homepage": "https://git.heroku.com/bit-ticker.git",
+  "homepage": "https://bit-ticker.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

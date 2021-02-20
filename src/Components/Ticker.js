@@ -83,7 +83,7 @@ class Ticker extends React.Component {
     const requestOptions = {
       method: "GET",
       uri:
-        "https://git.heroku.com/bit-ticker.git/api/cryptos",
+        "https://bit-ticker.herokuapp.com/api/cryptos",
     };
 
     rp(requestOptions)
