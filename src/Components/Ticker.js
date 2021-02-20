@@ -84,11 +84,13 @@ class Ticker extends React.Component {
       method: "GET",
       uri:
         "https://bit-ticker.herokuapp.com/api/cryptos",
+        // "http://localhost:3001/api/cryptos"
     };
 
     rp(requestOptions)
       .then((response) => {
         console.log("API call response:", JSON.parse(response));
+
         var results = JSON.parse(response);
         
           //grab the data from the API call response and assign propper variables to propper data

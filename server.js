@@ -38,8 +38,8 @@ const requestOptions = {
 };
 
 rp(requestOptions).then(response => {
-    results = response.data;
-  res.json(results);
+  // console.log(response);
+  res.json(response.data);
 }).catch((err) => {
   console.log('API call error:', err.message);
 });
