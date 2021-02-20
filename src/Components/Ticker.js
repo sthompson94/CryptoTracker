@@ -79,43 +79,30 @@ class Ticker extends React.Component {
 
   //Request to backend server
   getData = () => {
-    const rp = require("request-promise");
-    const requestOptions = {
-      method: "GET",
-      uri:"https://bit-ticker.herokuapp.com/api/cryptos",
-        // "http://localhost:3001/api/cryptos"
-    };
 
-    rp(requestOptions)
-      .then((response) => {
-        console.log("API call response:", JSON.parse(response));
-
-        var results = JSON.parse(response);
-        
-          //grab the data from the API call response and assign propper variables to propper data
-        this.setState({
-          firstName: results[0].name,
-          firstprice: results[0].quote.USD.price.toFixed(2),
-          first7dayChange: results[0].quote.USD.percent_change_7d.toFixed(2),
-          first1dayChange: results[0].quote.USD.percent_change_24h.toFixed(2),
-          secondName: results[1].name,
-          secondprice: results[1].quote.USD.price.toFixed(2),
-          second7dayChange: results[1].quote.USD.percent_change_7d.toFixed(2),
-          second1dayChange: results[1].quote.USD.percent_change_24h.toFixed(2),
-          thirdName: results[2].name,
-          thirdprice: results[2].quote.USD.price.toFixed(3),
-          third7dayChange: results[2].quote.USD.percent_change_7d.toFixed(2),
-          third1dayChange: results[2].quote.USD.percent_change_24h.toFixed(2),
-          fourthName: results[3].name,
-          fourthprice: results[3].quote.USD.price.toFixed(2),
-          fourth7dayChange: results[3].quote.USD.percent_change_7d.toFixed(2),
-          fourth1dayChange: results[3].quote.USD.percent_change_24h.toFixed(2),
-        });
-      })
-      //if theres an error, display the error in the console
-      .catch((err) => {
-        console.log("API call error:", err.message);
-      });
+    fetch('/api/cryptos')
+  .then(response => response.json())
+  .then(data => 
+    
+    this.setState({
+      firstName: data[0].name,
+      firstprice: data[0].quote.USD.price.toFixed(2),
+      first7dayChange: data[0].quote.USD.percent_change_7d.toFixed(2),
+      first1dayChange: data[0].quote.USD.percent_change_24h.toFixed(2),
+      secondName: data[1].name,
+      secondprice: data[1].quote.USD.price.toFixed(2),
+      second7dayChange: data[1].quote.USD.percent_change_7d.toFixed(2),
+      second1dayChange: data[1].quote.USD.percent_change_24h.toFixed(2),
+      thirdName: data[2].name,
+      thirdprice: data[2].quote.USD.price.toFixed(3),
+      third7dayChange: data[2].quote.USD.percent_change_7d.toFixed(2),
+      third1dayChange: data[2].quote.USD.percent_change_24h.toFixed(2),
+      fourthName: data[3].name,
+      fourthprice: data[3].quote.USD.price.toFixed(2),
+      fourth7dayChange: data[3].quote.USD.percent_change_7d.toFixed(2),
+      fourth1dayChange: data[3].quote.USD.percent_change_24h.toFixed(2),
+    })
+    );
   };
 
   
