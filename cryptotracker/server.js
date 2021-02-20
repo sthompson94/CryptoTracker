@@ -18,6 +18,8 @@ if (process.env.NODE_ENV === "production") {
 // Define API routes here
 
 app.get('/api/cryptos', function(req, res){
+
+    var results;
 //Api call to Coinmarket Cap
 const rp = require('request-promise');
 const requestOptions = {
@@ -36,8 +38,8 @@ const requestOptions = {
 };
 
 rp(requestOptions).then(response => {
-  console.log('API call response:', response);
-  console.log("hit backend");
+    results = response.data;
+  res.json(results);
 }).catch((err) => {
   console.log('API call error:', err.message);
 });

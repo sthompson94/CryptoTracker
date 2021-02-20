@@ -80,44 +80,36 @@ class Ticker extends React.Component {
 
   //Request to Coin1dayChange API to get Cryptocurrency information
   getData = () => {
-    console.log(process.env.REACT_APP_API_KEY)
     const rp = require("request-promise");
     const requestOptions = {
       method: "GET",
       uri:
         "http://localhost:3001/api/cryptos",
-        // https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest
-      qs: {
-        start: "1",
-        limit: "50",
-        convert: "USD",
-      },
-      json: true,
-      gzip: true,
     };
 
     rp(requestOptions)
       .then((response) => {
-        // console.log("API call response:", response);
+        console.log("API call response:", JSON.parse(response));
+        var results = JSON.parse(response);
         
           //grab the data from the API call response and assign propper variables to propper data
         this.setState({
-          firstName: response.data[0].name,
-          firstprice: response.data[0].quote.USD.price.toFixed(2),
-          first7dayChange: response.data[0].quote.USD.percent_change_7d.toFixed(2),
-          first1dayChange: response.data[0].quote.USD.percent_change_24h.toFixed(2),
-          secondName: response.data[1].name,
-          secondprice: response.data[1].quote.USD.price.toFixed(2),
-          second7dayChange: response.data[1].quote.USD.percent_change_7d.toFixed(2),
-          second1dayChange: response.data[1].quote.USD.percent_change_24h.toFixed(2),
-          thirdName: response.data[2].name,
-          thirdprice: response.data[2].quote.USD.price.toFixed(3),
-          third7dayChange: response.data[2].quote.USD.percent_change_7d.toFixed(2),
-          third1dayChange: response.data[2].quote.USD.percent_change_24h.toFixed(2),
-          fourthName: response.data[3].name,
-          fourthprice: response.data[3].quote.USD.price.toFixed(2),
-          fourth7dayChange: response.data[3].quote.USD.percent_change_7d.toFixed(2),
-          fourth1dayChange: response.data[3].quote.USD.percent_change_24h.toFixed(2),
+          firstName: results[0].name,
+          firstprice: results[0].quote.USD.price.toFixed(2),
+          first7dayChange: results[0].quote.USD.percent_change_7d.toFixed(2),
+          first1dayChange: results[0].quote.USD.percent_change_24h.toFixed(2),
+          secondName: results[1].name,
+          secondprice: results[1].quote.USD.price.toFixed(2),
+          second7dayChange: results[1].quote.USD.percent_change_7d.toFixed(2),
+          second1dayChange: results[1].quote.USD.percent_change_24h.toFixed(2),
+          thirdName: results[2].name,
+          thirdprice: results[2].quote.USD.price.toFixed(3),
+          third7dayChange: results[2].quote.USD.percent_change_7d.toFixed(2),
+          third1dayChange: results[2].quote.USD.percent_change_24h.toFixed(2),
+          fourthName: results[3].name,
+          fourthprice: results[3].quote.USD.price.toFixed(2),
+          fourth7dayChange: results[3].quote.USD.percent_change_7d.toFixed(2),
+          fourth1dayChange: results[3].quote.USD.percent_change_24h.toFixed(2),
         });
       })
       //if theres an error, display the error in the console

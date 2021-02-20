@@ -1,7 +1,7 @@
 {
   "name": "cryptotracker",
   "homepage": "https://sthompson94.github.io/CryptoTracker",
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:3001/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
