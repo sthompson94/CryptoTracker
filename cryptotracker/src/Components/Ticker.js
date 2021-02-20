@@ -78,13 +78,13 @@ class Ticker extends React.Component {
   }
  
 
-  //Request to Coin1dayChange API to get Cryptocurrency information
+  //Request to backend server
   getData = () => {
     const rp = require("request-promise");
     const requestOptions = {
       method: "GET",
       uri:
-        "http://localhost:3001/api/cryptos",
+        "https://sthompson94.github.io/CryptoTracker/api/cryptos",
     };
 
     rp(requestOptions)
@@ -116,7 +116,6 @@ class Ticker extends React.Component {
       .catch((err) => {
         console.log("API call error:", err.message);
       });
-    // console.log(this.state);
   };
 
   
