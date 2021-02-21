@@ -16,8 +16,6 @@ if (process.env.NODE_ENV === "production") {
 // Define API routes here
 
 app.get('/api/cryptos', function(req, res){
-
-    var results;
 //Api call to Coinmarket Cap
 const rp = require('request-promise');
 const requestOptions = {
@@ -35,6 +33,8 @@ const requestOptions = {
   gzip: true
 };
 
+
+
 rp(requestOptions).then(response => {
   // console.log(response);
   res.json(response.data);
@@ -43,16 +43,19 @@ rp(requestOptions).then(response => {
 });
 })
 
+// app.get("/", function(req, res) {
+//   res.sendFile(path.join(__dirname, "/index.html"));
+// });
+
 // Send every other request to the React app
 // Define any API routes before this runs
-if (process.env.NODE_ENV === 'production') {
+
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));
 // Handle React routing, return all requests to React app
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
-}
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
