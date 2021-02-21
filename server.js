@@ -2,7 +2,6 @@ const express = require("express");
 // const path = require("path");
 const PORT = process.env.PORT || 3001;
 const cors = require("cors")
-const axios = require("axios");
 const app = express();
 const dotenv = require("dotenv").config();
 
@@ -14,7 +13,6 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-// process.env.REACT_APP_API_KEY
 // Define API routes here
 
 app.get('/api/cryptos', function(req, res){
