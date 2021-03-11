@@ -20,24 +20,31 @@ app.get('/api/cryptos', function(req, res){
 const rp = require('request-promise');
 const requestOptions = {
   method: 'GET',
-  uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+  uri: 'https://api.coincap.io/v2/assets',
   qs: {
-    'start': '1',
-    'limit': '4',
-    'convert': 'USD'
-  },
-  headers: {
-    'X-CMC_PRO_API_KEY': process.env.REACT_APP_API_KEY
+    ids: "bitcoin,ethereum,litecoin,cardano"
   },
   json: true,
-  gzip: true
+  gzip: true,
 };
 
 
 
 rp(requestOptions).then(response => {
-  // console.log(response);
-  res.json(response.data);
+  console.log(response);
+
+  var numberResponse = [];
+
+  for(var i = 0;i < 4; i++){
+    var convertedNums = {
+      name: response.data[i].name,
+      priceUsd: Number(response.data[i].priceUsd),
+      changePercent24Hr: Number(response.data[i].changePercent24Hr),
+
+    }
+    numberResponse.push(convertedNums)
+  }
+  res.json(numberResponse);
 }).catch((err) => {
   console.log('API call error:', err.message);
 });

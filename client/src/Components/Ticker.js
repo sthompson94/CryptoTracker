@@ -43,7 +43,6 @@ class Ticker extends React.Component {
         <CryptoCard
         name = {this.state.firstName}
         price = {this.state.firstprice}
-        sevenDayChange = {this.state.first7dayChange}
         oneDayChange = {this.state.first1dayChange}
         nameColor = "text-success"
         classes = "col-sm-12 cryptocard mx-auto"
@@ -53,21 +52,18 @@ class Ticker extends React.Component {
         <CryptoCard
         name = {this.state.secondName}
         price = {this.state.secondprice}
-        sevenDayChange = {this.state.second7dayChange}
         oneDayChange = {this.state.second1dayChange}
         classes = "col-sm-4 cryptocard"
         />
         <CryptoCard
         name = {this.state.thirdName}
         price = {this.state.thirdprice}
-        sevenDayChange = {this.state.third7dayChange}
         oneDayChange = {this.state.third1dayChange}
         classes = "col-sm-4 centerCard cryptocard"
         />
         <CryptoCard
         name = {this.state.fourthName}
         price = {this.state.fourthprice}
-        sevenDayChange = {this.state.fourth7dayChange}
         oneDayChange = {this.state.fourth1dayChange}
         classes = "col-sm-4 cryptocard"
         />
@@ -83,24 +79,22 @@ class Ticker extends React.Component {
     fetch('/api/cryptos')
   .then(response => response.json())
   .then(data => 
+
+    
     
     this.setState({
       firstName: data[0].name,
-      firstprice: data[0].quote.USD.price.toFixed(2),
-      first7dayChange: data[0].quote.USD.percent_change_7d.toFixed(2),
-      first1dayChange: data[0].quote.USD.percent_change_24h.toFixed(2),
+      firstprice: data[0].priceUsd.toFixed(2),
+      first1dayChange: data[0].changePercent24Hr.toFixed(2),
       secondName: data[1].name,
-      secondprice: data[1].quote.USD.price.toFixed(2),
-      second7dayChange: data[1].quote.USD.percent_change_7d.toFixed(2),
-      second1dayChange: data[1].quote.USD.percent_change_24h.toFixed(2),
+      secondprice: data[1].priceUsd.toFixed(2),
+      second1dayChange: data[1].changePercent24Hr.toFixed(2),
       thirdName: data[2].name,
-      thirdprice: data[2].quote.USD.price.toFixed(3),
-      third7dayChange: data[2].quote.USD.percent_change_7d.toFixed(2),
-      third1dayChange: data[2].quote.USD.percent_change_24h.toFixed(2),
+      thirdprice: data[2].priceUsd.toFixed(2),
+      third1dayChange: data[2].changePercent24Hr.toFixed(2),
       fourthName: data[3].name,
-      fourthprice: data[3].quote.USD.price.toFixed(2),
-      fourth7dayChange: data[3].quote.USD.percent_change_7d.toFixed(2),
-      fourth1dayChange: data[3].quote.USD.percent_change_24h.toFixed(2),
+      fourthprice: data[3].priceUsd.toFixed(2),
+      fourth1dayChange: data[3].changePercent24Hr.toFixed(2),
     })
     );
   };
@@ -110,7 +104,7 @@ class Ticker extends React.Component {
   updateInfo = () => {
     var dataFunction = this.getData;
     
-    setInterval(function(){dataFunction()}, 30000)
+    setInterval(function(){dataFunction()}, 10000)
   }
 }
 
