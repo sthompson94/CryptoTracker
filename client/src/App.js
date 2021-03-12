@@ -11,7 +11,6 @@ function App() {
     <div className="App">
       <Banner />
       <div className="container">
-        <Ticker />
         <DefaultTable />
             <Button
               classes="btn btn-default"

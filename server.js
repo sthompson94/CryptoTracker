@@ -39,6 +39,7 @@ rp(requestOptions).then(response => {
     var convertedNums = {
       name: response.data[i].name,
       priceUsd: Number(response.data[i].priceUsd),
+      marketCapUsd: Number(response.data[i].marketCapUsd),
       changePercent24Hr: Number(response.data[i].changePercent24Hr),
 
     }
