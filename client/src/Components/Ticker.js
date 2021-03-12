@@ -75,7 +75,6 @@ class Ticker extends React.Component {
 
   //Request to backend server
   getData = () => {
-
     fetch('/api/cryptos')
   .then(response => response.json())
   .then(data => 
@@ -95,6 +94,7 @@ class Ticker extends React.Component {
       fourthName: data[3].name,
       fourthprice: data[3].priceUsd.toFixed(2),
       fourth1dayChange: data[3].changePercent24Hr.toFixed(2),
+      testVar: "I like cupcakes"
     })
     );
   };

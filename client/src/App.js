@@ -2,6 +2,7 @@ import "./App.css";
 import Ticker from "./Components/Ticker";
 import Banner from "./Components/Banner";
 import Button from "./Components/Button";
+import DefaultTable from './Components/DefaultTable';
 
 // Testing for github again
 
@@ -11,7 +12,7 @@ function App() {
       <Banner />
       <div className="container">
         <Ticker />
-
+        <DefaultTable />
             <Button
               classes="btn btn-default"
               link="https://bitcoin.org/en/how-it-works"

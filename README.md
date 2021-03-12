@@ -20,4 +20,4 @@ The information will update every 30 seconds.
 * Bootstrap CSS
 * Express.js
 * Axios.js
-* Heroku
+* Heroku;
