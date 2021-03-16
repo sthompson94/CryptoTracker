@@ -40,6 +40,7 @@ rp(requestOptions).then(response => {
       name: response.data[i].name,
       priceUsd: Number(response.data[i].priceUsd),
       marketCapUsd: Number(response.data[i].marketCapUsd),
+      supply: Number(response.data[i].supply),
       changePercent24Hr: Number(response.data[i].changePercent24Hr),
 
     }
